@@ -35,6 +35,13 @@ actor SwiftDataCache {
         return try? decoder.decode(T.self, from: entry.data)
     }
 
+    /// Checks if a non-expired cached entry exists for the given key.
+    func isFresh(forKey key: String) -> Bool {
+        let descriptor = FetchDescriptor<CachedEntry>(predicate: #Predicate { $0.key == key })
+        guard let entry = try? modelContext.fetch(descriptor).first else { return false }
+        return entry.expiresAt > Date()
+    }
+
     func remove(forKey key: String) {
         let descriptor = FetchDescriptor<CachedEntry>(predicate: #Predicate { $0.key == key })
         if let entry = try? modelContext.fetch(descriptor).first {

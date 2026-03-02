@@ -95,14 +95,7 @@ final class DeparturesViewModel {
             paginator.reset()
             state = .loaded
         } catch {
-            // Network failed — try stale cache as offline fallback
-            if allDepartures == nil, let cache,
-               let stale: DeparturesResponse = await cache.loadStale(forKey: cacheKey) {
-                allDepartures = stale.departures
-                stopDeviations = stale.stopDeviations
-                paginator.reset()
-                state = .loaded
-            } else if allDepartures == nil {
+            if allDepartures == nil {
                 state = .error(APIError.userFacingMessage(for: error))
             } else {
                 // Already have data on screen — show toast instead of replacing with error

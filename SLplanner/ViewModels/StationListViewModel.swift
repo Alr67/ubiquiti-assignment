@@ -1,10 +1,12 @@
 import Foundation
 import SwiftData
+import Network
 
 @MainActor
 @Observable
 final class StationListViewModel {
     var state: LoadingState = .idle
+    private(set) var isOffline = false
     var searchText: String = "" {
         didSet { paginator.reset() }
     }
@@ -25,12 +27,15 @@ final class StationListViewModel {
     private var allStations: [Site] = []
     private var stopAreaTypes: [Int: String] = [:]
     private var siteModesCache: [Int: [TransportMode]] = [:]
+    private var cachedSiteIds: Set<Int> = []
+    private let networkMonitor = NWPathMonitor()
 
     private let apiClient: APIClient
     private var cache: SwiftDataCache?
 
     private static let sitesCacheKey = "all_sites_expanded"
     private static let stopAreasCacheKey = "stop_area_types"
+    private static let cachedSiteIdsKey = "cached_departure_site_ids"
     private static let cacheTTL: TimeInterval = 365 * 86_400 // effectively permanent
 
     init(apiClient: APIClient = .shared) {
@@ -46,6 +51,21 @@ final class StationListViewModel {
         self.cache = SwiftDataCache(modelContainer: modelContext.container)
         loadFavorites()
         paginator.source = { [weak self] in self?.filteredStations ?? [] }
+        startNetworkMonitor()
+    }
+
+    private func startNetworkMonitor() {
+        networkMonitor.pathUpdateHandler = { [weak self] path in
+            Task { @MainActor [weak self] in
+                guard let self else { return }
+                let wasOffline = self.isOffline
+                self.isOffline = path.status != .satisfied
+                if wasOffline != self.isOffline {
+                    self.paginator.reset()
+                }
+            }
+        }
+        networkMonitor.start(queue: DispatchQueue(label: "network-monitor"))
     }
 
     // MARK: - Favorites
@@ -53,8 +73,22 @@ final class StationListViewModel {
     var favoriteStations: [Site] {
         guard !favoriteIds.isEmpty else { return [] }
         let stationMap = Dictionary(allStations.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
-        return favoriteIds.compactMap { stationMap[$0] }
-            .sorted { $0.name.localizedCompare($1.name) == .orderedAscending }
+        var result = favoriteIds.compactMap { stationMap[$0] }
+        if isOffline {
+            result = result.filter { cachedSiteIds.contains($0.id) }
+        }
+        return result.sorted { $0.name.localizedCompare($1.name) == .orderedAscending }
+    }
+
+    func markCached(siteId: Int) {
+        cachedSiteIds.insert(siteId)
+        persistCachedSiteIds()
+    }
+
+    private func persistCachedSiteIds() {
+        Task {
+            await cache?.save(Array(cachedSiteIds), forKey: Self.cachedSiteIdsKey, ttl: Self.cacheTTL)
+        }
     }
 
     func isFavorite(_ site: Site) -> Bool {
@@ -105,6 +139,9 @@ final class StationListViewModel {
            let cachedTypes: [Int: String] = await cache.load(forKey: Self.stopAreasCacheKey) {
             allStations = cachedSites
             stopAreaTypes = cachedTypes
+            if let ids: [Int] = await cache.load(forKey: Self.cachedSiteIdsKey) {
+                cachedSiteIds = Set(ids)
+            }
             paginator.reset()
             state = .loaded
 
@@ -159,6 +196,11 @@ final class StationListViewModel {
 
     private var filteredStations: [Site] {
         var result = allStations
+
+        // Offline: only show stations with cached departures
+        if isOffline {
+            result = result.filter { cachedSiteIds.contains($0.id) }
+        }
 
         if !searchText.isEmpty {
             let query = searchText.lowercased()

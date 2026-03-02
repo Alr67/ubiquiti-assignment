@@ -13,9 +13,12 @@ struct StationListView: View {
         }
         .navigationBarHidden(true)
         .navigationDestination(for: Site.self) { site in
-            DeparturesView(site: site, isFavorite: viewModel.isFavorite(site)) { site in
-                viewModel.toggleFavorite(site)
-            }
+            DeparturesView(
+                site: site,
+                isFavorite: viewModel.isFavorite(site),
+                onToggleFavorite: { viewModel.toggleFavorite($0) },
+                onDeparturesLoaded: { viewModel.markCached(siteId: $0) }
+            )
         }
         .task {
             viewModel.configure(modelContext: modelContext)
@@ -73,6 +76,9 @@ struct StationListView: View {
 
         default:
             VStack(spacing: 0) {
+                if viewModel.isOffline {
+                    offlineBanner
+                }
                 if !viewModel.favoriteStations.isEmpty {
                     favoritesBar
                     Divider()
@@ -80,6 +86,21 @@ struct StationListView: View {
                 stationList
             }
         }
+    }
+
+    // MARK: - Offline
+
+    private var offlineBanner: some View {
+        HStack(spacing: 8) {
+            Image(systemName: "wifi.slash")
+                .font(.caption)
+            Text("Offline — showing stations with cached departures")
+                .font(.caption)
+        }
+        .foregroundStyle(.secondary)
+        .padding(.vertical, 8)
+        .frame(maxWidth: .infinity)
+        .background(Color(.systemGray6))
     }
 
     // MARK: - Favorites

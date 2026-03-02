@@ -6,11 +6,13 @@ struct DeparturesView: View {
     @State private var viewModel: DeparturesViewModel
     @State private var isFavorite: Bool
     let onToggleFavorite: (Site) -> Void
+    let onDeparturesLoaded: (Int) -> Void
 
-    init(site: Site, isFavorite: Bool, onToggleFavorite: @escaping (Site) -> Void) {
+    init(site: Site, isFavorite: Bool, onToggleFavorite: @escaping (Site) -> Void, onDeparturesLoaded: @escaping (Int) -> Void) {
         _viewModel = State(wrappedValue: DeparturesViewModel(site: site))
         _isFavorite = State(wrappedValue: isFavorite)
         self.onToggleFavorite = onToggleFavorite
+        self.onDeparturesLoaded = onDeparturesLoaded
     }
 
     var body: some View {
@@ -45,6 +47,11 @@ struct DeparturesView: View {
             viewModel.configure(modelContainer: modelContext.container)
             if viewModel.state == .idle {
                 await viewModel.loadDepartures()
+            }
+        }
+        .onChange(of: viewModel.allDepartures != nil) {
+            if viewModel.allDepartures != nil {
+                onDeparturesLoaded(viewModel.site.id)
             }
         }
         .overlay(alignment: .bottom) {
