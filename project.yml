@@ -25,3 +25,14 @@ targets:
         GENERATE_INFOPLIST_FILE: YES
         SWIFT_EMIT_LOC_STRINGS: YES
         CODE_SIGN_STYLE: Automatic
+
+  SLplannerTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - SLplannerTests
+    dependencies:
+      - target: SLplanner
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES

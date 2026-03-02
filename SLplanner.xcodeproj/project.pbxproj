@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08E9A257CFEEA9929E79FBDD /* DecodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EA1FAD230E4E9856F1BE78 /* DecodingTests.swift */; };
 		0AA5C810064EFEF54819B29F /* FavoriteStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A37593C847B6B071F0AC766 /* FavoriteStation.swift */; };
 		15AB8C87056BE6C338AD44BE /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7788B2C78B9B7CB3853F17FC /* ErrorView.swift */; };
 		224F1F9FB6B5926A153A352C /* DepartureRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DB9482D9302594628F2399 /* DepartureRow.swift */; };
@@ -21,6 +22,7 @@
 		88C548B196A2118DDEA67B22 /* StationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E95AE6D1DAC6ED55A5802A /* StationListView.swift */; };
 		89CDD38D89CDA4A37A5703C6 /* DeparturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429E5532FEF37CD9EB94DB0D /* DeparturesView.swift */; };
 		9AF572A37893B1739EC7CCE6 /* DepartureDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748D6D9EDED98A4416130D1C /* DepartureDetailView.swift */; };
+		A465714BB83CF17F0963519C /* CacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D936F1A02D0D8DA4A6D4273C /* CacheTests.swift */; };
 		AD21F34AAEBEC35CDF6C0166 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111DDB6029AAA5BE95540E7B /* SearchBar.swift */; };
 		B6BCFCA2F620E615D9E0E83D /* FilterChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9CF7F4D41CAEF290830823 /* FilterChip.swift */; };
 		D0452F47B6EE1C437FB13714 /* Site.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400A86E2A910CD8EB311428B /* Site.swift */; };
@@ -31,6 +33,16 @@
 		EC02E1C53130AA1049495ABD /* StationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FA12E7B9C6D464D08710DA /* StationListViewModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		1F2B45FACF0046242C1977C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E6AE580ED25FD1EE8C59A03D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1D9EA55112F57ABA47312CA3;
+			remoteInfo = SLplanner;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		02CCF4DE747729EC7CEDDE8A /* Paginator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paginator.swift; sourceTree = "<group>"; };
 		064F8048701FE6BD9C218FC9 /* CachedEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedEntry.swift; sourceTree = "<group>"; };
@@ -40,17 +52,20 @@
 		400A86E2A910CD8EB311428B /* Site.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Site.swift; sourceTree = "<group>"; };
 		429E5532FEF37CD9EB94DB0D /* DeparturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeparturesView.swift; sourceTree = "<group>"; };
 		4C8AAAF2E31A60EAFE76C91A /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		591F9C73269CB41158ADD170 /* SLplannerTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SLplannerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		665775E34CA3D530DD7F8607 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		69FA12E7B9C6D464D08710DA /* StationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListViewModel.swift; sourceTree = "<group>"; };
 		748D6D9EDED98A4416130D1C /* DepartureDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureDetailView.swift; sourceTree = "<group>"; };
 		7788B2C78B9B7CB3853F17FC /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		7AB76003CD2FED6A05192773 /* Departure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Departure.swift; sourceTree = "<group>"; };
-		893E5B8F8AA9F312EE72A99A /* SLplanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLplanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		893E5B8F8AA9F312EE72A99A /* SLplanner.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SLplanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93D3F9A40350CD84F4DDF6B3 /* SLplannerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLplannerApp.swift; sourceTree = "<group>"; };
 		9A37593C847B6B071F0AC766 /* FavoriteStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStation.swift; sourceTree = "<group>"; };
 		9CD6E47B559BC1987AB36D85 /* DeparturesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeparturesViewModel.swift; sourceTree = "<group>"; };
 		A3DDC10A2E854EB6681ED138 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A5EA1FAD230E4E9856F1BE78 /* DecodingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodingTests.swift; sourceTree = "<group>"; };
 		D3DB9482D9302594628F2399 /* DepartureRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureRow.swift; sourceTree = "<group>"; };
+		D936F1A02D0D8DA4A6D4273C /* CacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheTests.swift; sourceTree = "<group>"; };
 		E3A983B0F70E3BED6783444D /* DiskCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskCache.swift; sourceTree = "<group>"; };
 		E60DB7EBAF91F3A7AA54E49C /* StyleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleExtensions.swift; sourceTree = "<group>"; };
 		F2E95AE6D1DAC6ED55A5802A /* StationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListView.swift; sourceTree = "<group>"; };
@@ -71,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				86D7152889BA9924A8A0549F /* SLplanner */,
+				B4988DC2C6325F562DE801D2 /* SLplannerTests */,
 				CE3F7975F67C67E9FA037B42 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -129,10 +145,20 @@
 			path = SLplanner;
 			sourceTree = "<group>";
 		};
+		B4988DC2C6325F562DE801D2 /* SLplannerTests */ = {
+			isa = PBXGroup;
+			children = (
+				D936F1A02D0D8DA4A6D4273C /* CacheTests.swift */,
+				A5EA1FAD230E4E9856F1BE78 /* DecodingTests.swift */,
+			);
+			path = SLplannerTests;
+			sourceTree = "<group>";
+		};
 		CE3F7975F67C67E9FA037B42 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				893E5B8F8AA9F312EE72A99A /* SLplanner.app */,
+				591F9C73269CB41158ADD170 /* SLplannerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -180,6 +206,24 @@
 			productReference = 893E5B8F8AA9F312EE72A99A /* SLplanner.app */;
 			productType = "com.apple.product-type.application";
 		};
+		22F27B8B2D693540B774D50B /* SLplannerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D335D81643593F77A364268C /* Build configuration list for PBXNativeTarget "SLplannerTests" */;
+			buildPhases = (
+				676DA21FAECF3241084071F3 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				28F70BD92590356A36CED3FB /* PBXTargetDependency */,
+			);
+			name = SLplannerTests;
+			packageProductDependencies = (
+			);
+			productName = SLplannerTests;
+			productReference = 591F9C73269CB41158ADD170 /* SLplannerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -204,10 +248,12 @@
 			);
 			mainGroup = 22A4E3A62BDCAB7D46598DB8;
 			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				1D9EA55112F57ABA47312CA3 /* SLplanner */,
+				22F27B8B2D693540B774D50B /* SLplannerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -224,6 +270,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		676DA21FAECF3241084071F3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A465714BB83CF17F0963519C /* CacheTests.swift in Sources */,
+				08E9A257CFEEA9929E79FBDD /* DecodingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CC86755429BCBDE3021A1F81 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -254,7 +309,32 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		28F70BD92590356A36CED3FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1D9EA55112F57ABA47312CA3 /* SLplanner */;
+			targetProxy = 1F2B45FACF0046242C1977C8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		2931E09DCCF897EDEFB01114 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.slplanner.SLplannerTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SLplanner.app/SLplanner";
+			};
+			name = Debug;
+		};
 		42C55FE3197E2350D634060B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -381,7 +461,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8A55443K9T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -401,6 +480,23 @@
 			};
 			name = Debug;
 		};
+		7C1905EC23532B180F1DCA9C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.slplanner.SLplannerTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SLplanner.app/SLplanner";
+			};
+			name = Release;
+		};
 		A9A66D3B2DD17D32838E0B12 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -408,7 +504,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8A55443K9T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -436,6 +531,15 @@
 			buildConfigurations = (
 				42C55FE3197E2350D634060B /* Debug */,
 				48CF2308D04DDA2EEBC55665 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D335D81643593F77A364268C /* Build configuration list for PBXNativeTarget "SLplannerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2931E09DCCF897EDEFB01114 /* Debug */,
+				7C1905EC23532B180F1DCA9C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
