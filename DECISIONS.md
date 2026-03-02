@@ -9,7 +9,7 @@
 ## Caching
 
 - **SwiftData (`SwiftDataCache` actor)**: Started with FileManager (file-per-key with TTL). Migrated to SwiftData when favorites were added — having both blob cache and user data in one persistence layer is cleaner than mixing FileManager + SwiftData.
-- **`CachedEntry` model**: Generic blob storage — key (unique), data (JSON-encoded), expiresAt. The cache doesn't know about the domain types it stores.
+- **`CachedEntry` model**: Generic blob storage — key (unique), data (JSON-encoded blob), expiresAt. Domain models (`Site`, `Departure`) are plain `Codable` structs, not `@Model` classes. The cache encodes them to JSON `Data` on save and decodes back on load. This works well here because the data is simple and always loaded fully into memory anyway — we never query individual stations or departures from the database. In a production app with larger or more relational data, we'd model the entities directly as `@Model` types for indexed, queryable storage instead of opaque blobs.
 - **TTL strategy**: Stations use a 365-day TTL (effectively permanent, synced on every launch). Departures use 2-minute TTL. Expired departures are not shown — stations with stale cache are hidden in offline mode to avoid displaying outdated times.
 - **No `URLCache`**: Requirement specified custom caching. SwiftData gives us TTL control, offline fallback, and queryable storage that `URLCache` doesn't.
 
